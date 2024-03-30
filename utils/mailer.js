@@ -9,6 +9,7 @@ const mailer = Mailgun({
 
 export const sendEmail = async (qrBase64String, email) => {
   const qrBuffer = Buffer.from(qrBase64String, "base64");
+
   const attachment = new mailer.Attachment({
     data: qrBuffer,
     filename: "pass.png",

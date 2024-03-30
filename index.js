@@ -17,8 +17,9 @@ const generateQRCodes = async () => {
 
     for (const user of users) {
       const qr = await QRCode.toDataURL(user.id);
+
       //TODO: Use user.email
-      const testEmail = "";
+      const testEmail = "ankitkumar19041@gmail.com";
       await sendEmail(qr, testEmail);
     }
   } catch (err) {

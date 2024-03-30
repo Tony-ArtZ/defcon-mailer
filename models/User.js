@@ -35,6 +35,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isEventAttended: { type: Boolean, default: false },
+    password: { type: String },
   },
   { collection: "users" }
 );
