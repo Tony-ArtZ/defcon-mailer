@@ -12,6 +12,6 @@ const auth = {
 
 const nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
-export const sendEmail = async (email, qr) => {
-  await nodemailerMailgun.sendMail(body(email, qr));
+export const sendEmail = async (email, qr, name) => {
+  await nodemailerMailgun.sendMail(body(email, qr, name));
 };
