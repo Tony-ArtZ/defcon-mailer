@@ -12,14 +12,11 @@ mongoose.connect(process.env.MONGODB_URL, {
 
 const generateQRCodes = async () => {
   try {
-    //TODO: RemoveLimiter
-    const users = await User.find({}).select("_id email").limit(1);
+    const users = await User.find({}).select("_id email");
 
     for (const user of users) {
       const qr = await QRCode.toDataURL(user.id);
-      //TODO: Use user.email
-      const testEmail = "";
-      await sendEmail(qr, testEmail);
+      await sendEmail(user.email, qr);
     }
   } catch (err) {
     console.log(err);

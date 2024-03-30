@@ -1,6 +1,4 @@
-import Mailgun from "mailgun-js";
-
-export const body = (attachment, email) => ({
+export const body = (email, qr) => ({
   from: `Game Master <gamemaster@email.d3fc0n.tech>`,
   to: email,
   subject: "DefCon Entry Pass",
@@ -9,5 +7,11 @@ export const body = (attachment, email) => ({
       <p style="text-align: center; color: #1a1a1a;">Regards,<br />Here is your Pass</p>
       </div>
     `,
-  attachment: attachment,
+  attachments: [
+    {
+      filename: "pass.png",
+      content: qr.split("base64,")[1],
+      encoding: "base64",
+    },
+  ],
 });
