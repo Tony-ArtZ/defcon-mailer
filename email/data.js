@@ -1,11 +1,14 @@
-import Mailgun from "mailgun-js";
-// const fs = require('fs');
 import fs from "fs";
-
-export const body = (attachment, email) => ({
+export const body = (email, qr, name) => ({
   from: `Game Master <gamemaster@email.d3fc0n.tech>`,
   to: email,
-  subject: "DefCon Entry Pass",
+  subject: `DefCon Entry Pass for ${name}`,
   html: fs.readFileSync("mailTemplate.html", "utf-8"),
-  attachment: attachment,
+  attachments: [
+    {
+      filename: "pass.png",
+      content: qr.split("base64,")[1],
+      encoding: "base64",
+    },
+  ],
 });
